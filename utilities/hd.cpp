@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 
     if (argc < 2)
     {
-        printf("hd (hex dump) utility - bioMerieux, Inc. Version 1\n");
+        printf("hd (hex dump) utility - Dumps binary files in hex format with text when available\n");
         printf("USAGE: hd filename\n");
         exit(0);
     }
@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 void hexDump(FILE *fp)
 {
     long rowAddress = 0;
-    unsigned char buffer[DisplayedWidth];   // Buffer for each line of data from file
+    unsigned char buffer[DisplayedWidth + 1];   // Buffer for each line of data from file
     size_t n, i;
 
     while ((n = fread(buffer, 1, DisplayedWidth, fp)) > 0)
