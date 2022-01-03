@@ -5,3 +5,5 @@
 # mv $1 $1DOS.sh  <-- need to extract base name from full name
 tr -d "\r" < $1DOS.sh > $1
 
+# Think I like the following better
+sed -i 's/\r//g' $1
