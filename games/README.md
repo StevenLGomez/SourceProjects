@@ -1,7 +1,7 @@
 # worm.c
 
 A simple C compile demo for testing mingw cross compile container.   
-When compiling with Mingw64, currently has issues with POSIX signals:
+When compiling with Mingw64, currently has issues with POSIX signals:   
 SIGTSTP   
 SIGALRM   
 SIGQUIT => which the mingw64 compiler asks "Did you mean SIGABRT?"   
