@@ -5,7 +5,7 @@ Placeholder
 1. Whisper by OpenAI (via Whisper.cpp or PyWhisper)
 
 sudo apt install -y python3-pip
-pip install -U openai-whisper  # <-- Takes a really long time!
+pip install -U openai-whisper --break-system-packages  # <-- Takes a really long time!
 
 whisper your-audio-file.mp3 --model medium --language English
 
