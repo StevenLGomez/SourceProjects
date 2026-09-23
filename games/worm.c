@@ -25,11 +25,14 @@ static char sccsid[] = "@(#)worm.c	8.1 (Berkeley) 05/31/93";
  * UCSC
  */
 
+#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <curses.h>
 #include <signal.h>
 #include <termios.h>
+
+#include <unistd>
 
 #define newlink() (struct body *) malloc(sizeof (struct body));
 #define HEAD '@'
@@ -41,6 +44,11 @@ static char sccsid[] = "@(#)worm.c	8.1 (Berkeley) 05/31/93";
 /* #ifndef baudrate                       */
 /* # define	baudrate()	_tty.sg_ospeed    */
 /* #endif                                 */
+
+// Function prototypes
+void life();
+void prize();
+void process(char);
 
 WINDOW *tv;
 WINDOW *stw;
@@ -185,8 +193,7 @@ void prize()
 	wrefresh(tv);
 }
 
-void process(ch)
-char ch;
+void process(char ch)
 {
 	register int x,y;
 	struct body *nh;
