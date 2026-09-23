@@ -60,6 +60,8 @@ void life();
 void prize();
 void process(char);
 void display(struct body*, char);
+crash();
+setup();
 
 int growing = 0;
 int running = 0;
@@ -167,7 +169,7 @@ void wake()
 	process(lastch);
 }
 
-rnd(range)
+int rnd(range)
 {
 	return abs((rand()>>5)+(rand()>>5)) % range;
 }
@@ -254,7 +256,7 @@ void process(char ch)
 		alarm(1);
 }
 
-void crash()
+crash()
 {
 	sleep(2);
 	clear();
@@ -280,7 +282,7 @@ void suspend()
 	setup();
 }
 
-void setup()
+setup()
 {
 	clear();
 	refresh();
