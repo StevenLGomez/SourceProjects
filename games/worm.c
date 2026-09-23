@@ -68,10 +68,8 @@ int running = 0;
 int slow = 0;
 int score = 0;
 int start_len = LENGTH;
-char lastch;
-char outbuf[BUFSIZ];
 
-void leave(), wake(), suspend();
+void leave(), wake(), suspend(), crash(), setup();
 
 void main(int argc, char** argv)
 {
@@ -219,6 +217,7 @@ void process(char ch)
 		default: if (! running) alarm(1);
 			   return;
 	}
+
 	lastch = ch;
 	if (growing == 0)
 	{
@@ -241,7 +240,11 @@ void process(char ch)
 		wprintw(stw, "Score: %3d", score);
 		wrefresh(stw);
 	}
-	else if(ch != ' ') crash();
+	else if(ch != ' ')
+	{
+		crash();
+	}
+
 	nh = newlink();
 	nh->next = NULL;
 	nh->prev = head;
