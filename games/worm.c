@@ -33,6 +33,7 @@ static char sccsid[] = "@(#)worm.c	8.1 (Berkeley) 05/31/93";
 #include <termios.h>
 
 #include <unistd.h>
+#include <ncurses.h>
 
 #define newlink() (struct body *) malloc(sizeof (struct body));
 #define HEAD '@'
