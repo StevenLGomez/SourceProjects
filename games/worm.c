@@ -62,7 +62,7 @@ char outbuf[BUFSIZ];
 
 void leave(), wake(), suspend();
 
-main(int argc, char** argv)
+void main(int argc, char** argv)
 {
 	char ch;
 
@@ -117,7 +117,7 @@ main(int argc, char** argv)
 	}
 }
 
-life()
+void life()
 {
 	register struct body *bp, *np;
 	register int i;
@@ -139,7 +139,7 @@ life()
 	tail->prev = NULL;
 }
 
-display(pos, chr)
+void display(pos, chr)
 struct body *pos;
 char chr;
 {
@@ -147,15 +147,13 @@ char chr;
 	waddch(tv, chr);
 }
 
-void
-leave()
+void leave()
 {
 	endwin();
 	exit(0);
 }
 
-void
-wake()
+void wake()
 {
 	signal(SIGALRM, wake);
 	fflush(stdout);
@@ -167,7 +165,7 @@ rnd(range)
 	return abs((rand()>>5)+(rand()>>5)) % range;
 }
 
-newpos(bp)
+void newpos(bp)
 struct body * bp;
 {
 	do {
@@ -177,7 +175,7 @@ struct body * bp;
 	} while(winch(tv) != ' ');
 }
 
-prize()
+void prize()
 {
 	int value;
 
@@ -187,7 +185,7 @@ prize()
 	wrefresh(tv);
 }
 
-process(ch)
+void process(ch)
 char ch;
 {
 	register int x,y;
@@ -250,7 +248,7 @@ char ch;
 		alarm(1);
 }
 
-crash()
+void crash()
 {
 	sleep(2);
 	clear();
@@ -261,8 +259,7 @@ crash()
 	leave();
 }
 
-void
-suspend()
+void suspend()
 {
 	char *sh;
 
@@ -277,7 +274,7 @@ suspend()
 	setup();
 }
 
-setup()
+void setup()
 {
 	clear();
 	refresh();
@@ -287,3 +284,4 @@ setup()
 	wrefresh(tv);
 	alarm(1);
 }
+
