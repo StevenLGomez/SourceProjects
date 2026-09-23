@@ -59,7 +59,7 @@ struct body {
 void life();
 void prize();
 void process(char);
-void display(struct body*, char)
+void display(struct body*, char);
 
 int growing = 0;
 int running = 0;
