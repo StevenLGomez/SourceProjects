@@ -60,8 +60,7 @@ void life();
 void prize();
 void process(char);
 void display(struct body*, char);
-crash();
-setup();
+void leave(), wake(), suspend(), crash(), setup();
 
 int growing = 0;
 int running = 0;
@@ -69,7 +68,9 @@ int slow = 0;
 int score = 0;
 int start_len = LENGTH;
 
-void leave(), wake(), suspend(), crash(), setup();
+char lastch;
+char outbuf[501];
+
 
 void main(int argc, char** argv)
 {
@@ -167,7 +168,7 @@ void wake()
 	process(lastch);
 }
 
-int rnd(range)
+int rnd(int range)
 {
 	return abs((rand()>>5)+(rand()>>5)) % range;
 }
@@ -259,7 +260,7 @@ void process(char ch)
 		alarm(1);
 }
 
-crash()
+void crash()
 {
 	sleep(2);
 	clear();
@@ -285,7 +286,7 @@ void suspend()
 	setup();
 }
 
-setup()
+void setup()
 {
 	clear();
 	refresh();
