@@ -134,14 +134,14 @@ void life()
 	head->x = start_len+2;
 	head->y = 12;
 	head->next = NULL;
-	display(head, HEAD);
+	void display(head, HEAD);
 	for (i = 0, bp = head; i < start_len; i++, bp = np) {
 		np = newlink();
 		np->next = bp;
 		bp->prev = np;
 		np->x = bp->x - 1;
 		np->y = bp->y;
-		display(np, BODY);
+		void display(np, BODY);
 	}
 	tail = np;
 	tail->prev = NULL;
@@ -221,14 +221,14 @@ void process(char ch)
 	lastch = ch;
 	if (growing == 0)
 	{
-		display(tail, ' ');
+		void display(tail, ' ');
 		tail->next->prev = NULL;
 		nh = tail->next;
 		free(tail);
 		tail = nh;
 	}
 	else growing--;
-	display(head, BODY);
+	void display(head, BODY);
 	wmove(tv, y, x);
 	if (isdigit(ch = winch(tv)))
 	{
@@ -247,7 +247,7 @@ void process(char ch)
 	head->next = nh;
 	nh->y = y;
 	nh->x = x;
-	display(nh, HEAD);
+	void display(nh, HEAD);
 	head = nh;
 	if (!(slow && running))
 		wrefresh(tv);
