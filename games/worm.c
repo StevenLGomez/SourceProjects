@@ -45,11 +45,6 @@ static char sccsid[] = "@(#)worm.c	8.1 (Berkeley) 05/31/93";
 /* # define	baudrate()	_tty.sg_ospeed    */
 /* #endif                                 */
 
-// Function prototypes
-void life();
-void prize();
-void process(char);
-
 WINDOW *tv;
 WINDOW *stw;
 
@@ -59,6 +54,12 @@ struct body {
 	struct body *prev;
 	struct body *next;
 } *head, *tail, goody;
+
+// Function prototypes
+void life();
+void prize();
+void process(char);
+void display(struct body*, char)
 
 int growing = 0;
 int running = 0;
@@ -134,22 +135,20 @@ void life()
 	head->x = start_len+2;
 	head->y = 12;
 	head->next = NULL;
-	void display(head, HEAD);
+	display(head, HEAD);
 	for (i = 0, bp = head; i < start_len; i++, bp = np) {
 		np = newlink();
 		np->next = bp;
 		bp->prev = np;
 		np->x = bp->x - 1;
 		np->y = bp->y;
-		void display(np, BODY);
+		display(np, BODY);
 	}
 	tail = np;
 	tail->prev = NULL;
 }
 
-void display(pos, chr)
-struct body *pos;
-char chr;
+void display(struct body *pos, char chr)
 {
 	wmove(tv, pos->y, pos->x);
 	waddch(tv, chr);
@@ -221,14 +220,14 @@ void process(char ch)
 	lastch = ch;
 	if (growing == 0)
 	{
-		void display(tail, ' ');
+		display(tail, ' ');
 		tail->next->prev = NULL;
 		nh = tail->next;
 		free(tail);
 		tail = nh;
 	}
 	else growing--;
-	void display(head, BODY);
+	display(head, BODY);
 	wmove(tv, y, x);
 	if (isdigit(ch = winch(tv)))
 	{
@@ -247,7 +246,7 @@ void process(char ch)
 	head->next = nh;
 	nh->y = y;
 	nh->x = x;
-	void display(nh, HEAD);
+	display(nh, HEAD);
 	head = nh;
 	if (!(slow && running))
 		wrefresh(tv);
